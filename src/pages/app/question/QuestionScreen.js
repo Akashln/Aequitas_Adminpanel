@@ -23,19 +23,29 @@ import {
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
 import { questionData } from "./question.service";
+
   const QuestionScreen = ({
     page,
     rowsPerPage,
     handleChangePage,
     handleChangeRowsPerPage,
+    onClickAddQuestionBtn,
+    onClickViewBtn,
+    setEditQuestion,
+    onClickEditBtn,
   }) => {
+    console.log("onClickAddQuestionBtn", onClickAddQuestionBtn);
     return (
       <Card variant="outlined">
         <Box p={2} display="flex" alignItems="center">
           <Typography color="#212121" variant="h6" mr={2}>
             Question Details
           </Typography>
-          <Button color="primary" variant="contained">
+          <Button
+           color="primary" 
+           variant="contained"
+           onClick={onClickAddQuestionBtn}
+           >
             Add Question
           </Button>
         </Box>
@@ -82,9 +92,14 @@ import { questionData } from "./question.service";
                           <TableCell align="left">{item.question_category}</TableCell>
                           <TableCell align="left">{item.question_isused}</TableCell>
                           <TableCell align="left">{item.question_answerdetails}</TableCell>
+                          
                           <TableCell align="center">
-                            <IconButton><FileOpenIcon/></IconButton>
-                            <IconButton><EditIcon/></IconButton>
+                            <IconButton onClick={()=>onClickViewBtn(item)} >
+                            <FileOpenIcon/>
+                            </IconButton>
+                            <IconButton onClick={()=>onClickEditBtn(item)}>
+                            <EditIcon/>
+                            </IconButton>
                             <IconButton><DeleteIcon color="error"/></IconButton>
                           </TableCell>
                         </TableRow>

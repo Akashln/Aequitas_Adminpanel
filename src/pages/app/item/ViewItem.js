@@ -4,18 +4,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 //import { getWalletDataById } from '../../../redux/actions/user.action'
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { ListSkeletonLoader } from '../../../components/loader/ListSkeletonLoader'
-import { getWalletDataById } from '../../../redux/actions/wallet.action';
+import { ListSkeletonLoader } from '../../../components/loader/ListSkeletonLoader';
+import { getItemDataById } from '../../../redux/actions/item.action';
 
-const ViewWallet = () => {
+const ViewItem = () => {
     const navigate = useNavigate()
   const dispatch = useDispatch()
-  let { walletId } = useParams()
-  const state = useSelector((state) => state.wallet)
+  let { ItemId } = useParams()
+  const state = useSelector((state) => state.item)
 
   useEffect(() => {
-    dispatch(getWalletDataById(walletId))
-   }, [dispatch,walletId])
+    dispatch(getItemDataById(itemId))
+   }, [dispatch,itemId])
 
   return (
     <Box>
@@ -25,21 +25,25 @@ const ViewWallet = () => {
           alignItems="center"
           sx={{ background: "#00001508" }}
         >
-          <IconButton  onClick={() => navigate(`/wallet`)} size="large">
+          <IconButton  onClick={() => navigate(`/item`)} size="large">
             <KeyboardBackspaceIcon color="action" />
           </IconButton>
           <Typography ml={1} variant="h6">
-          Wallet Details
+             Item Details
           </Typography>
         </Box>
         <Divider />
         <CardContent>
-        {state.singleWalletData.loading ? (
+        {state.singleItemData.loading ? (
           ListSkeletonLoader()
         ) : (
           <>
-            <Typography>{state.singleWalletData.wallet[0]?.wallet_amount}</Typography>
-            <Typography>{state.singleWalletData.wallet[0]?.wallet_details}</Typography> 
+            <Typography>{state.singleItemData.item[0]?.item_name}</Typography>
+            <Typography>{state.singleItemData.item[0]?.item_description}</Typography>
+            <Typography>{state.singleItemData.item[0]?.item_price}</Typography>
+            <Typography>{state.singleItemData.item[0]?.item_qty}</Typography> 
+            <Typography>{state.singleItemData.item[0]?.item_category}</Typography>
+            <Typography>{state.singleItemData.item[0]?.item_purchasetype}</Typography> 
             {/* <Typography>{state.singleWalletData.user[0]?.user_number}</Typography>
             <Typography>{state.singleWalletData.user[0]?.role_name}</Typography> */}
           </>
@@ -50,4 +54,4 @@ const ViewWallet = () => {
   )
 }
 
-export default ViewWallet;
+export default ViewItem;

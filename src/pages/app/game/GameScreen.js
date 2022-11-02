@@ -93,9 +93,12 @@ import { gameData } from "./game.service";
                           <TableCell align="left">{item.isRunning}</TableCell>
                           <TableCell align="left">{item.game_end_date}</TableCell>
                           <TableCell align="center">
-                            <IconButton><FileOpenIcon/></IconButton>
+                          <Box display='flex'>
+                          <IconButton><FileOpenIcon/></IconButton>
                             <IconButton><EditIcon/></IconButton>
                             <IconButton><DeleteIcon/></IconButton>
+                          </Box>
+                            
                           </TableCell>
                         </TableRow>
                       </React.Fragment>

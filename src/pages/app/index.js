@@ -6,10 +6,12 @@ import Game from "./game/Game";
 import Player from "./player";
 import User from "./user";
 import ViewUser from "./user/ViewUser";
-import Item from "./item/Item";
+import Item from "./item";
 import Wallet from "./wallet/Wallet";
 import Profile from "./profile/Profile";
 import Question from "./question/Question";
+import ViewWallet from "./wallet/viewWallet";
+import ViewQuestion from "./question/ViewQuestion";
 
 
 export default function AppScreen(){
@@ -25,7 +27,9 @@ export default function AppScreen(){
         <Route path="/bingocard" element={<Bingocard />}></Route>
         <Route path="/item" element={<Item />}></Route>
         <Route path="/question" element={<Question />}></Route>
+        {/* <Route path='/question/:questionId' element={<ViewQuestion />}></Route> */}
         <Route path="/wallet" element={<Wallet />}></Route>
+        <Route path='/wallet/:walletId' element={<ViewWallet />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         {/* <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route> */}

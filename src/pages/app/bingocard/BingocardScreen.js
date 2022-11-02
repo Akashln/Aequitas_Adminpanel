@@ -23,11 +23,16 @@ import {
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
 import { bingocardData } from "./bingocard.service";
+
   const BingocardScreen = ({
     page,
     rowsPerPage,
     handleChangePage,
     handleChangeRowsPerPage,
+    onClickAddBingocardBtn,
+     onClickViewBtn,
+     setEditBingocard,
+      onClickEditBtn,
   }) => {
     return (
       <Card variant="outlined">
@@ -35,7 +40,11 @@ import { bingocardData } from "./bingocard.service";
           <Typography color="#212121" variant="h6" mr={2}>
             Bingocard Details
           </Typography>
-          <Button color="primary" variant="contained">
+          <Button 
+          color="primary" 
+          variant="contained"
+          onClick={onClickAddBingocardBtn}
+          >
             Add Bingocard
           </Button>
         </Box>
@@ -82,9 +91,14 @@ import { bingocardData } from "./bingocard.service";
                           <TableCell align="left">{item.is_sold}</TableCell>
                           <TableCell align="left">{item.owned_by}</TableCell>
                           <TableCell align="left">{item.link}</TableCell>
+                          
                           <TableCell align="center">
-                            <IconButton><FileOpenIcon/></IconButton>
-                            <IconButton><EditIcon/></IconButton>
+                            <IconButton onClick={()=>onClickViewBtn(item)}>
+                            <FileOpenIcon/>
+                            </IconButton>
+                            <IconButton onClick={()=>onClickEditBtn(item)}>
+                            <EditIcon/>
+                            </IconButton>
                             <IconButton><DeleteIcon color="error"/></IconButton>
                           </TableCell>
                         </TableRow>

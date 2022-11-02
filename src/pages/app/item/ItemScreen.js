@@ -28,14 +28,23 @@ import { itemsData } from "./item.service";
     rowsPerPage,
     handleChangePage,
     handleChangeRowsPerPage,
+    onClickAddItemsBtn,
+    onClickViewBtn,
+    setEditItems,
+    onClickEditBtn,
   }) => {
+     console.log("onClickAddItemsBtn",onClickAddItemsBtn);
     return (
       <Card variant="outlined">
         <Box p={2} display="flex" alignItems="center">
           <Typography color="#212121" variant="h6" mr={2}>
             Item Details
           </Typography>
-          <Button color="primary" variant="contained">
+          <Button
+           color="primary"
+            variant="contained"
+            onClick={onClickAddItemsBtn}
+            >
             Add Items
           </Button>
         </Box>
@@ -86,9 +95,15 @@ import { itemsData } from "./item.service";
                           <TableCell align="left">{item.items_qty}</TableCell>
                           <TableCell align="left">{item.items_category}</TableCell>
                           <TableCell align="left">{item.items_purchasetype}</TableCell>
+
+
                           <TableCell align="center">
-                            <IconButton><FileOpenIcon/></IconButton>
-                            <IconButton><EditIcon/></IconButton>
+                            <IconButton onClick={()=>onClickViewBtn(item)}>
+                                <FileOpenIcon/>
+                            </IconButton>
+                            <IconButton onClick={()=>onClickEditBtn(item)}>
+                            <EditIcon/>
+                            </IconButton>
                             <IconButton><DeleteIcon color="error"/></IconButton>
                           </TableCell>
                         </TableRow>

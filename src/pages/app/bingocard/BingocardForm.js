@@ -17,16 +17,20 @@ import {
   import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
   import CircularLoader from "../../../components/loader/CircularLoader";
   
-  const WalletForm = ({
+  const BingocardForm = ({
     onClickBack,
     onSubmit,
     onUpdate,
     onDiscard,
-    onChangeWalletAmount,
-    onChangeWalletDetails,
-    editWallet,
-    walletAmount,
-    walletDetails,
+    onChangeCardNumber,
+    onChangeIsSold,
+    onChangeOwnedBy,
+    onChangeLink,
+    editBingocard,
+    CardNumber,
+    IsSold,
+    OwnedBy,
+    Link,
    
     loading,
   }) => {
@@ -48,7 +52,7 @@ import {
               <KeyboardBackspaceIcon color="action" />
             </IconButton>
             <Typography ml={1} variant="h6">
-              {editWallet.isEditing ? "Edit Wallet" : "Add Wallet"}
+              {editBingocard.isEditing ? "Edit Bingocard" : "Add Bingocard"}
             </Typography>
           </Box>
           <Divider />
@@ -63,8 +67,8 @@ import {
                   name="name"
                   autoComplete="name"
                   autoFocus
-                  value={walletAmount}
-                  onChange={onChangeWalletAmount}
+                  value={CardNumber}
+                  onChange={onChangeCardNumber}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -76,8 +80,34 @@ import {
                   name="email"
                   autoComplete="email"
                   autoFocus
-                  value={walletDetails}
-                  onChange={onChangeWalletDetails}
+                  value={IsSold}
+                  onChange={onChangeIsSold}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  // margin="normal"
+                  required
+                  fullWidth
+                  label="Wallet Details"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={OwnedBy}
+                  onChange={onChangeOwnedBy}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  // margin="normal"
+                  required
+                  fullWidth
+                  label="Wallet Details"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={Link}
+                  onChange={onChangeLink}
                 />
               </Grid>
               
@@ -94,7 +124,7 @@ import {
             <Button
               variant="contained"
               color="primary"
-              onClick={editWallet.isEditing ? onUpdate : onSubmit}
+              onClick={editBingocard.isEditing ? onUpdate : onSubmit}
             >
               Submit
             </Button>
@@ -105,5 +135,5 @@ import {
     );
   };
   
-  export default WalletForm;
+  export default BingocardForm;
   

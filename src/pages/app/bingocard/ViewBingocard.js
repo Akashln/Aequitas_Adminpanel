@@ -2,20 +2,19 @@ import { Box, Card, CardContent, Divider, IconButton, Typography } from '@mui/ma
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-//import { getWalletDataById } from '../../../redux/actions/user.action'
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { ListSkeletonLoader } from '../../../components/loader/ListSkeletonLoader'
-import { getWalletDataById } from '../../../redux/actions/wallet.action';
+import { getBingocardDataById } from '../../../redux/actions/bingocard.action';
 
-const ViewWallet = () => {
+const ViewBingocard = () => {
     const navigate = useNavigate()
   const dispatch = useDispatch()
-  let { walletId } = useParams()
-  const state = useSelector((state) => state.wallet)
+  let { bingocardId } = useParams()
+  const state = useSelector((state) => state.bingocard)
 
   useEffect(() => {
-    dispatch(getWalletDataById(walletId))
-   }, [dispatch,walletId])
+    dispatch(getBingocardDataById(bingocardId))
+   }, [dispatch,bingocardId])
 
   return (
     <Box>
@@ -25,21 +24,23 @@ const ViewWallet = () => {
           alignItems="center"
           sx={{ background: "#00001508" }}
         >
-          <IconButton  onClick={() => navigate(`/wallet`)} size="large">
+          <IconButton  onClick={() => navigate(`/bingocard`)} size="large">
             <KeyboardBackspaceIcon color="action" />
           </IconButton>
           <Typography ml={1} variant="h6">
-          Wallet Details
+          Bingocard Details
           </Typography>
         </Box>
         <Divider />
         <CardContent>
-        {state.singleWalletData.loading ? (
+        {state.singleBingocardData.loading ? (
           ListSkeletonLoader()
         ) : (
           <>
-            <Typography>{state.singleWalletData.wallet[0]?.wallet_amount}</Typography>
-            <Typography>{state.singleWalletData.wallet[0]?.wallet_details}</Typography> 
+            <Typography>{state.singleBingocardData.bingocard[0]?.bingocard_card_number}</Typography>
+            <Typography>{state.singleBingocardData.bingocard[0]?.bingocard_is_sold}</Typography>
+            <Typography>{state.singleBingocardData.bingocard[0]?.bingocard_owned_by}</Typography>
+            <Typography>{state.singleBingocardData.bingocard[0]?.bingocard_link}</Typography>
             {/* <Typography>{state.singleWalletData.user[0]?.user_number}</Typography>
             <Typography>{state.singleWalletData.user[0]?.role_name}</Typography> */}
           </>
@@ -50,4 +51,4 @@ const ViewWallet = () => {
   )
 }
 
-export default ViewWallet;
+export default ViewBingocard;

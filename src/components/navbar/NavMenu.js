@@ -4,6 +4,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import DialpadIcon from '@mui/icons-material/Dialpad';
 //import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 export const navItems = [
@@ -29,7 +30,7 @@ export const navItems = [
     },
     {
       href: "/bingocard",
-      icon: PersonAddIcon,
+      icon:DialpadIcon,
       title: "Bingo Card",
     },
     {

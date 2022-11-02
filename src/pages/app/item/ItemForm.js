@@ -17,7 +17,7 @@ import {
   import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
   import CircularLoader from "../../../components/loader/CircularLoader";
   
-  const WalletForm = ({
+  const ItemForm = ({
     onClickBack,
     onSubmit,
     onUpdate,
@@ -48,7 +48,7 @@ import {
               <KeyboardBackspaceIcon color="action" />
             </IconButton>
             <Typography ml={1} variant="h6">
-              {editWallet.isEditing ? "Edit Wallet" : "Add Wallet"}
+              {editItem.isEditing ? "Edit Item" : "Add Item"}
             </Typography>
           </Box>
           <Divider />
@@ -59,7 +59,7 @@ import {
                   //margin="normal"
                   required
                   fullWidth
-                  label="Wallet Amount"
+                  label="Item Name"
                   name="name"
                   autoComplete="name"
                   autoFocus
@@ -72,7 +72,59 @@ import {
                   // margin="normal"
                   required
                   fullWidth
-                  label="Wallet Details"
+                  label="Item Description"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={walletDetails}
+                  onChange={onChangeWalletDetails}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  // margin="normal"
+                  required
+                  fullWidth
+                  label="Item Price"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={walletDetails}
+                  onChange={onChangeWalletDetails}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  // margin="normal"
+                  required
+                  fullWidth
+                  label="Item Quantity"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={walletDetails}
+                  onChange={onChangeWalletDetails}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  // margin="normal"
+                  required
+                  fullWidth
+                  label="Item Category"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={walletDetails}
+                  onChange={onChangeWalletDetails}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  // margin="normal"
+                  required
+                  fullWidth
+                  label="Item Purchasetype"
                   name="email"
                   autoComplete="email"
                   autoFocus
@@ -94,7 +146,7 @@ import {
             <Button
               variant="contained"
               color="primary"
-              onClick={editWallet.isEditing ? onUpdate : onSubmit}
+              onClick={editItem.isEditing ? onUpdate : onSubmit}
             >
               Submit
             </Button>
@@ -105,5 +157,5 @@ import {
     );
   };
   
-  export default WalletForm;
+  export default ItemForm;
   
