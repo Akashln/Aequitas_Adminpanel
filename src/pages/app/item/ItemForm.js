@@ -47,9 +47,9 @@ import {
             <IconButton onClick={onClickBack} size="large">
               <KeyboardBackspaceIcon color="action" />
             </IconButton>
-            <Typography ml={1} variant="h6">
+            {/* <Typography ml={1} variant="h6">
               {editItem.isEditing ? "Edit Item" : "Add Item"}
-            </Typography>
+            </Typography> */}
           </Box>
           <Divider />
           <CardContent p={3}>
@@ -143,13 +143,13 @@ import {
             justifyContent="flex-end"
             // sx={{ background: "#00001508" }}
           >
-            <Button
+            {/* <Button
               variant="contained"
               color="primary"
               onClick={editItem.isEditing ? onUpdate : onSubmit}
             >
               Submit
-            </Button>
+            </Button> */}
           </Box>
           <Divider />
         </Card>

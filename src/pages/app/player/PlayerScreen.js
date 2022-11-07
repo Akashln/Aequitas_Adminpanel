@@ -20,18 +20,37 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { playerData } from "./player.service";
+import axios from "axios";
+
 const PlayerScreen = ({
   page,
   rowsPerPage,
   handleChangePage,
   handleChangeRowsPerPage,
 }) => {
+  const [players, setPlayers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+    .get(`http://localhost:3000/player`)
+      .then(res => {
+        setLoading(false);
+        if (res.data) {
+          console.log(res.data.data)
+          setPlayers(res.data.data)
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setLoading(false);
+      });
+  },[]);
+
   return (
     <Card variant="outlined">
       <Box px={2} py={4} display="flex" alignItems="center">
@@ -47,7 +66,9 @@ const PlayerScreen = ({
         />
         {/* <Button color="primary" variant="contained">
             Add Player
-          </Button> */}
+          </Button>
+           */}
+               
       </Box>
       <Divider />
       <CardContent>
@@ -66,6 +87,7 @@ const PlayerScreen = ({
           <Button color="primary" variant="contained">
             Search
           </Button>
+          
         </Box>
         <Paper variant="outlined">
           <TableContainer style={{ maxHeight: "400px" }} className="scrollbar">
@@ -82,26 +104,19 @@ const PlayerScreen = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {playerData.map((item, x) => {
+                {players.map((item, x) => {
                   return (
                     <React.Fragment key={x}>
                       <TableRow sx={{ height: "50px" }} hover>
                         <TableCell align="center">
-                          <Avatar alt={item.player_name} src="" />
+                          <Avatar alt={item.firstname} src="" />
                         </TableCell>
-                        <TableCell align="left">{item.player_name}</TableCell>
-                        <TableCell align="left">{item.player_number}</TableCell>
+                        <TableCell align="left">{item.firstname}&nbsp;{item.lastname}</TableCell>
+                        <TableCell align="left">{item.phone}</TableCell>
                         <TableCell align="left">{item.created_at}</TableCell>
-                        <TableCell align="left">{item.coins_hold}</TableCell>
-                        <TableCell align="left">{item.is_active}</TableCell>
-                        {/* <TableCell align="left">{item.action}</TableCell> */}
+                        <TableCell align="left">10000</TableCell>
+                        <TableCell align="left">yes</TableCell>
                         <TableCell align="center">
-                          {/* <IconButton><FileOpenIcon/></IconButton>
-                            <IconButton><EditIcon/></IconButton> */}
-                          {/* <IconButton><DeleteIcon/></IconButton> */}
-                          {/* <IconButton>
-                                <DeleteIcon color="error"  />
-                              </IconButton> */}
                           <Tooltip title="Mark inactive">
                             <IconButton
                               style={{
@@ -124,7 +139,7 @@ const PlayerScreen = ({
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={playerData.length}
+            count={players.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
