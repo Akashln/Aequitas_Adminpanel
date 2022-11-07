@@ -26,6 +26,10 @@ const Bingocard = () => {
     setPage(0);
   };
 
+  const onChangeEditBingocard=()=>{
+    
+  }
+
   const onClickAddBingocardBtn = () => {
     setEditBingocard({ isEditing: false, editItem: null });
     onDiscard();

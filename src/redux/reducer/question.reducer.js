@@ -38,7 +38,7 @@ const questionStateSlice = createSlice({
 })
 
 export const {
-    setList,
+    setQuestionList,
     loadingQuestionList,
     loadingError,
     loadingSingleQuestionData,

@@ -8,7 +8,7 @@ import {
     setQuestionList,
 } from '../reducer/question.reducer';
 
-export const getAllQuestion = async (dispatch) => {
+export const getAllQuestions = async (dispatch) => {
     try{
         dispatch(loadingQuestionList())
         const res = await getQuestionList()

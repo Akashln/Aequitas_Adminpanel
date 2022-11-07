@@ -27,7 +27,7 @@ import {
     editWallet,
     walletAmount,
     walletDetails,
-   
+   editItem,
     loading,
   }) => {
     // useEffect(() => {

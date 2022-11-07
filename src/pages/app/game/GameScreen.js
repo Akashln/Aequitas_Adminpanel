@@ -28,6 +28,10 @@ import { gameData } from "./game.service";
     rowsPerPage,
     handleChangePage,
     handleChangeRowsPerPage,
+    onClickAddGameBtn,
+    onClickViewBtn,
+    setEditGame,
+    onClickEditBtn,
   }) => {
     return (
       <Card variant="outlined">
@@ -35,7 +39,10 @@ import { gameData } from "./game.service";
           <Typography color="#212121" variant="h6" mr={2}>
             Game Page
           </Typography>
-          <Button color="primary" variant="contained">
+          <Button color="primary"
+           variant="contained"
+           onClick={onClickAddGameBtn}
+           >
             Add Games
           </Button>
         </Box>

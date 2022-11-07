@@ -63,9 +63,9 @@ import {
                   //margin="normal"
                   required
                   fullWidth
-                  label="Wallet Amount"
-                  name="name"
-                  autoComplete="name"
+                  label="Card Number"
+                  name="cardnumber"
+                  autoComplete="cardnumber"
                   autoFocus
                   value={CardNumber}
                   onChange={onChangeCardNumber}
@@ -76,9 +76,9 @@ import {
                   // margin="normal"
                   required
                   fullWidth
-                  label="Wallet Details"
-                  name="email"
-                  autoComplete="email"
+                  label="Is Sold"
+                  name="issold"
+                  autoComplete="issold"
                   autoFocus
                   value={IsSold}
                   onChange={onChangeIsSold}
@@ -89,9 +89,9 @@ import {
                   // margin="normal"
                   required
                   fullWidth
-                  label="Wallet Details"
-                  name="email"
-                  autoComplete="email"
+                  label="Owned By"
+                  name="ownedby"
+                  autoComplete="ownedby"
                   autoFocus
                   value={OwnedBy}
                   onChange={onChangeOwnedBy}
@@ -102,9 +102,9 @@ import {
                   // margin="normal"
                   required
                   fullWidth
-                  label="Wallet Details"
-                  name="email"
-                  autoComplete="email"
+                  label="Link"
+                  name="link"
+                  autoComplete="link"
                   autoFocus
                   value={Link}
                   onChange={onChangeLink}
