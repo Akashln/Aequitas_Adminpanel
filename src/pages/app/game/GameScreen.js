@@ -18,11 +18,13 @@ import {
     TextField,
     Typography,
   } from "@mui/material";
-  import React from "react";
+  import React ,{ useEffect, useState } from "react";
   import FileOpenIcon from '@mui/icons-material/FileOpen';
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
 import { gameData } from "./game.service";
+import axios from "axios";
+
   const GameScreen = ({
     page,
     rowsPerPage,
@@ -33,6 +35,24 @@ import { gameData } from "./game.service";
     setEditGame,
     onClickEditBtn,
   }) => {
+    const [games, setGames] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      axios
+      .get(`http://localhost:3000/game`)
+        .then(res => {
+          setLoading(false);
+          if (res.data) {
+            console.log(res.data.data)
+            setGames(res.data.data)
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          setLoading(false);
+        });
+    },[]);
+  
     return (
       <Card variant="outlined">
         <Box p={2} display="flex" alignItems="center">
@@ -83,21 +103,21 @@ import { gameData } from "./game.service";
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {gameData.map((item, x) => {
+                  {games.map((item, x) => {
                     return (
                       <React.Fragment key={x}>
                         <TableRow sx={{ height: "50px" }}  hover>
                           <TableCell align="center">
                             <Avatar alt={item.game_name} src="" />
                           </TableCell>
-                          <TableCell align="left">{item.game_date}</TableCell>
-                          <TableCell align="left">{item.game_time}</TableCell>
+                          <TableCell align="left">{item.created_at}</TableCell>
+                          <TableCell align="left">{item.starts_at}</TableCell>
                           <TableCell align="left">{item.game_simulation}</TableCell>
-                          <TableCell align="left">{item.winning_no}</TableCell>
-                          <TableCell align="left">{item.total_card_generated}</TableCell>
+                          <TableCell align="left">{item.win_numbers}</TableCell>
+                          <TableCell align="left">{item.total_cards_generated}</TableCell>
                           <TableCell align="left">{item.total_winning_card}</TableCell>
-                          <TableCell align="left">{item.win_ratio}</TableCell>
-                          <TableCell align="left">{item.isRunning}</TableCell>
+                          <TableCell align="left">{item.win_in}/{item.win_from}</TableCell>
+                          <TableCell align="left">false</TableCell>
                           <TableCell align="left">{item.game_end_date}</TableCell>
                           <TableCell align="center">
                           <Box display='flex'>
