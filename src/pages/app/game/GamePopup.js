@@ -1,12 +1,14 @@
 import * as React from "react";
+
 import Button from "@mui/material/Button";
+
 import Dialog from "@mui/material/Dialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseIcon from "@mui/icons-material/Close";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from "dayjs";
 
 import {
   Box,
@@ -21,6 +23,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { TimePicker } from "@mui/x-date-pickers";
 
 export default function GamePopup({
   onClose,
@@ -44,63 +47,94 @@ export default function GamePopup({
         </IconButton>
       </DialogTitle>
       <DialogContent dividers>
-        {timesArr.length === 0 ? [{ time: '', value: "" }] : timesArr.map(
-          (i, x) => (
-            <Grid container spacing={3} key={x} my={0}>
-              <Grid item xs={5.5}>
-                {/* <TextField
+        {timesArr.length === 0
+          ? [{ time: "", value: "" }]
+          : timesArr.map((i, x) => (
+              <Grid container spacing={3} key={x} my={0}>
+                <Grid item xs={6}>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                  <TextField
+                    // margin="normal"
                     required
                     fullWidth
-                    label="Time"
-                    name="time"
-                    value={i.time}
-                    autoComplete="time"
+                    label="Minute"
+                    type="number"
+                    name="value"
+                    value={i.minute}
+                    autoComplete="value"
                     onChange={(e) => {
                       let newArr = [...timesArr];
-                      newArr[x].time = e.target.value;
-                      setTimesArr(newArr);
-                    }}
-                  /> */}
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateTimePicker
-                    renderInput={(props) => <TextField {...props} />}
-                    label="DateTimePicker"
-                    value={i.time}
-                    onChange={(newValue) => {
-                      console.log('newValue',dayjs(newValue).format('DD/MM/YYYY,HH:mm'))
-                      let newArr = [...timesArr];
-                      newArr[x].time =dayjs(newValue).format('DD/MM/YYYY,HH:mm');
+                      newArr[x].minute = e.target.value >=0 && e.target.value <=60 ? e.target.value : " ";
                       setTimesArr(newArr);
                     }}
                   />
-                </LocalizationProvider>
+                  </Grid>
+                  <Grid item xs={6}>
+                  <TextField
+                    // margin="normal"
+                    required
+                    fullWidth
+                    label="Second"
+                    type="number"
+                    name="value"
+                    value={i.sec}
+                    autoComplete="value"
+                    onChange={(e) => {
+                      let newArr = [...timesArr];
+                      newArr[x].sec = e.target.value >=0 && e.target.value <=60 ? e.target.value : " ";
+                      setTimesArr(newArr) ;
+                    }}
+                  />
+                  </Grid>
+                </Grid>
+                
+                  
+
+                  {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <TimePicker
+                      label="Time"
+                      ampm={false}
+                      openTo="hours"
+                      views={['hours', 'minutes', 'seconds']}
+                      inputFormat="HH:mm:ss"
+                      mask="__:__:__"
+                      value={i.time}
+                      onChange={(newValue) => {
+                        let newArr = [...timesArr];
+                        newArr[x].time =newValue;
+                        setTimesArr(newArr);
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider> */}
+
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                    // margin="normal"
+                    required
+                    fullWidth
+                    label="Value"
+                    name="value"
+                    value={i.value}
+                    autoComplete="value"
+                    onChange={(e) => {
+                      let newArr = [...timesArr];
+                      newArr[x].value = e.target.value;
+                      setTimesArr(newArr);
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={1}>
+                  {x === 0 ? null : (
+                    <IconButton onClick={onClickDelete}>
+                      <DeleteIcon />
+                    </IconButton>
+                  )}
+                </Grid>
               </Grid>
-              <Grid item xs={5.5}>
-                <TextField
-                  // margin="normal"
-                  required
-                  fullWidth
-                  label="Value"
-                  name="value"
-                  value={i.value}
-                  autoComplete="value"
-                  onChange={(e) => {
-                    let newArr = [...timesArr];
-                    newArr[x].value = e.target.value;
-                    setTimesArr(newArr);
-                  }}
-                />
-              </Grid>
-              <Grid item xs={1}>
-                {x === 0 ? null : (
-                  <IconButton onClick={onClickDelete}>
-                    <DeleteIcon />
-                  </IconButton>
-                )}
-              </Grid>
-            </Grid>
-          )
-        )}
+            ))}
       </DialogContent>
       <DialogActions sx={{ padding: 2 }}>
         <Button

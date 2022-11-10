@@ -103,7 +103,7 @@ import { gameData } from "./game.service";
                           <Box display='flex'>
                           <IconButton><FileOpenIcon/></IconButton>
                             <IconButton><EditIcon/></IconButton>
-                            <IconButton><DeleteIcon/></IconButton>
+                            <IconButton><DeleteIcon color="error"/></IconButton>
                           </Box>
                             
                           </TableCell>
